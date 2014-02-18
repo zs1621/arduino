@@ -28,22 +28,22 @@ void setup()
     
     delay(20000);
     
-    //start_GSM();
+    start_GSM();
     
-    //delay(5000);
+    delay(5000);
     
     start_GPS();
-  
+
     
  }
  void loop()    
  {    
    
-   
+
    read_GPS();
    delay(2000);
-   Serial.println(latitude);
-   Serial.println(longitude);
+   // Serial.println(latitude);
+   // Serial.println(longitude);
    //send_GPRS();
    //delay(30000);
 
@@ -104,14 +104,17 @@ void setup()
     Serial.println("AT+CGPSINF=0");
     
     read_String();
+
     
     strtok(inData, ",");
     strcpy(longitude,strtok(NULL, ",")); // Gets longitude
     strcpy(latitude,strtok(NULL, ",")); // Gets latitude
     
-    
+    Serial.println(latitude);
     convert2Degrees(latitude);
+    Serial.println(latitude);
     convert2Degrees(longitude);
+
     
     
  }
@@ -127,10 +130,11 @@ void setup()
        {
            inChar = Serial.read(); // Read a character
            inData[index] = inChar; // Store it
-           index++; // Increment where to write next
+           index++; // Increment where to   write next
            inData[index] = '\0'; // Null terminate the string
        }
    }
+
  }
  
  int8_t convert2Degrees(char* input){
