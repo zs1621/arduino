@@ -47,7 +47,7 @@ void loop () {
     if (stat == 0 || stat == 1) {
         if (gps_gga_is_fix ()) {    //true if fix
             //send_message ("18501683475", gps_gga_utc_s ());
-            gsm_set_numble ("18501683475"); //
+            gsm_set_numble ("13681714906"); //
             gsm_send_message (gps_gga_utc_s ());
             gsm_send_message (gps_gga_EW ());
             gsm_send_message (gps_gga_NS ());
