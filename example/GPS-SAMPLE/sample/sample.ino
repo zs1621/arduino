@@ -8,14 +8,11 @@
  *
  */
  
-#ifndef DEBUG
-#define DEBUG
-#endif
-
-#include <SoftwareSerial.h>
-SoftwareSerial Serial1(10, 11); // RX, TX
-
-#include "gpsGsmSim908.h"
+  #ifndef DEBUG
+  #define DEBUG
+  #endif
+ 
+#include "gps_gsm_sim908.h"
  
 //
 void setup () {
@@ -23,11 +20,11 @@ void setup () {
  
     #ifdef DEBUG
     Serial.begin (9600);    //serial0 connect computer
-    //while (!Serial);
+    while (!Serial);
     #endif
  
     Serial1.begin (9600);   //serial1 connect GPS
-    //while (!Serial1);
+    while (!Serial1);
  
     #ifdef DEBUG
     Serial.println ("start GPS! ");
@@ -47,7 +44,7 @@ void loop () {
     if (stat == 0 || stat == 1) {
         if (gps_gga_is_fix ()) {    //true if fix
             //send_message ("18501683475", gps_gga_utc_s ());
-            gsm_set_numble ("13641720538"); //
+            gsm_set_numble ("18501683475"); //
             gsm_send_message (gps_gga_utc_s ());
             gsm_send_message (gps_gga_EW ());
             gsm_send_message (gps_gga_NS ());
@@ -117,4 +114,3 @@ void loop () {
  
  
 /********************* end of sample code *************************/
-

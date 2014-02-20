@@ -8,10 +8,9 @@
  */
  
 //debug
-#define DEBUG
+//#define DEBUG
  
 #include <Arduino.h>
-
  
  
 #define gps_enable()    digitalWrite (4, LOW)
@@ -95,11 +94,6 @@ void start_gps () {
     #endif
      
     Serial1.println ("AT");
-    #ifdef DEBUG
-    Serial.println ("Send AT");
-    #endif
-    delay (1000);
-	Serial1.println ("AT");
     #ifdef DEBUG
     Serial.println ("Send AT");
     #endif
@@ -249,7 +243,7 @@ uint8_t gps_gga_utc_ss () {
 uint8_t gps_gga_utc_mm () {
     return (gga_p[1][2]-'0')*10+gga_p[1][3]-'0';
 }
-         
+ 
 //get UTC hour
 uint8_t gps_gga_utc_hh () {
     return (gga_p[1][0]-'0')*10+gga_p[1][1]-'0';
@@ -406,4 +400,3 @@ void gps_init () {
 }
  
 /********************* end of gps_gsm_sim908.h ***********************/
-

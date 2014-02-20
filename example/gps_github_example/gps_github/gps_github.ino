@@ -1,3 +1,8 @@
+#define gps_enable()    digitalWrite (4, LOW)
+#define gps_disable()   digitalWrite (4, HIGH)
+ 
+#define gsm_enable()    digitalWrite (3, LOW)
+#define gsm_disable()   digitalWrite (3, HIGH)
 char aux_str[30];
 char aux;
 
@@ -110,7 +115,6 @@ void setup()
     strcpy(longitude,strtok(NULL, ",")); // Gets longitude
     strcpy(latitude,strtok(NULL, ",")); // Gets latitude
     
-    Serial.println(latitude);
     convert2Degrees(latitude);
     Serial.println(latitude);
     convert2Degrees(longitude);
@@ -232,4 +236,76 @@ void setup()
     input[indice]='\0';
 
 
+}
+
+static int gps_read () {
+    uint32_t start_time = millis ();
+    while (!Serial1.available ()) {
+        if (millis() - start_time > 1500) {
+            #ifdef DEBUG
+            Serial.println ("restart GPS......");
+            #endif
+            start_gps ();
+        }
+    }
+    for (int i=0; i<GPS_BUF_SIZE; i++) {
+        delay (7);
+        if (Serial1.available ()) {
+            gps_buf [i] = Serial1.read ();
+        } else {
+            #ifdef DEBUG
+            Serial.print ("read ");
+            Serial.print (i);
+            Serial.println (" character");
+            #endif
+            return 1;
+        }
+    }
+    #ifdef DEBUG
+    Serial.println ("error! data is so big!");
+    #endif
+    return 0;
+}
+void start_gps () {
+    digitalWrite (5, HIGH);
+    delay (1500);
+    digitalWrite (5, LOW);
+    delay (1500);
+ 
+    gsm_enable ();
+    gps_disable ();
+ 
+    delay (2000);
+    #ifdef DEBUG
+    Serial.println ("waiting for GPS! ");
+    #endif
+     
+    Serial1.println ("AT");
+    #ifdef DEBUG
+    Serial.println ("Send AT");
+    #endif
+    delay (1000);
+	Serial1.println ("AT");
+    #ifdef DEBUG
+    Serial.println ("Send AT");
+    #endif
+    delay (1000);
+    Serial1.println ("AT+CGPSPWR=1");
+    #ifdef DEBUG
+    Serial.println ("Send AT+CGPSPWR=1");
+    #endif
+    delay (1000);
+    Serial1.println ("AT+CGPSRST=1");
+    #ifdef DEBUG
+    Serial.println ("Send AT+CGPSRST=1");
+    #endif
+    delay (1000);
+ 
+    gsm_disable ();
+    gps_enable ();
+ 
+    delay (2000);
+    #ifdef DEBUG
+    Serial.println ("$GPGGA statement information: ");
+    #endif
 }
