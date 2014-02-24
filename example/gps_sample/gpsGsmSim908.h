@@ -2,7 +2,7 @@
  
 /*
  *  by 2013-08-02
- *  test on Leonardo 
+ *  test on Arduino
  *  Serial1 to GPS
  *
  */
