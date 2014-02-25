@@ -1,12 +1,14 @@
-/*
-标题: 光敏电阻控制led
-时间: 2014/1/14
-作者: rhapsodyzs
- */
+/**
+*敏二极管控制led
+* 光敏电路连接[fritzing](http://pan.baidu.com/share/link?shareid=2141310824&uk=1426543175)
+* 
+* 光敏二极管短端接负极
+* 
+* 原理见链接[yuai](http://www.ic61.com/circuit/2008-4/200842410384431187.html)
+*/
 
-
-int photocellPin = 1;    //定义变量photocellsh=2，为电压读取端口。
-int ledPin = 12;   //定义变量ledPin=12，为led电平输出端口
+int photocellPin = 5;    //定义变量photocellsh=2，为电压读取端口。
+int ledPin = 2;   //定义变量ledPin=12，为led电平输出端口
 int val = 0;       //定义val变量的起始值
  
  
