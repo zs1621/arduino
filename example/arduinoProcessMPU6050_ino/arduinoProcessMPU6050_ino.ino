@@ -1,3 +1,8 @@
+/**
+* 电路连接: bluno v1.5 ;mpu6050/GY-521 [芯片具体见网站](http://item.taobao.com/item.htm?spm=a230r.1.0.0.9Qtw2q&id=21390500926）
+*  Vcc <-> 3.3v ,gnd <-> gnd, scl <-> 模拟口A5, sda <-> 模拟口A4
+*/
+
 #include "Wire.h"
 #include "I2Cdev.h"
 #include "MPU6050.h"
