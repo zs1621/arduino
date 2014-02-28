@@ -1,6 +1,6 @@
 /**
 *敏二极管控制led
-* 光敏电路连接[fritzing](http://pan.baidu.com/share/link?shareid=2141310824&uk=1426543175)
+* 光敏电路连接[fritzing](http://pan.baidu.com/share/link?shareid=2141310824&uk=1426543175)  这个电路图没有显示  发光二极管的电路
 * 
 * 光敏二极管短端接负极
 * 
@@ -19,9 +19,9 @@ void setup() {
  
 void loop() { 
   val = analogRead(photocellPin);
-  delay(100);
+  delay(1000);
   Serial.println(val);  //从传感器读取值
-  if(val>950){      //想让传感器敏感一些的时候，把数值调低点，想让传感器迟钝的时候把数值调高。
+  if(val>900){      //想让传感器敏感一些的时候，把数值调低点，想让传感器迟钝的时候把数值调高。
     digitalWrite(ledPin, HIGH); //
   }
   else{
