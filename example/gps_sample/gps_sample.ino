@@ -49,6 +49,7 @@ void loop () {
     if (stat == 0 || stat == 1) {
         if (gps_gga_is_fix ()) {    //true if fix
             //send_message ("18501683475", gps_gga_utc_s ());
+<<<<<<< HEAD:example/gps_sample/sample.ino
             //Serial.println('fixing');
             gsm_set_numble ("18621793072"); //
             gsm_send_message (gps_gga_utc_s ());
